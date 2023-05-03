@@ -21,6 +21,7 @@ h) Método consultarDatos(): permitirá mostrar todos los datos de la cuenta*/
 public class Cuenta {
 	private int numCuenta;
 	private String dni;
+	private String nombre;
 	private int saldo;
 
 	Scanner leer = new Scanner(System.in);
@@ -28,8 +29,9 @@ public class Cuenta {
 	public Cuenta() {
 	}
 
-	public Cuenta(int numCuenta, String dni, int saldo) {
+	public Cuenta(int numCuenta, String nombre,String dni, int saldo) {
 		this.numCuenta = numCuenta;
+		this.nombre = nombre;
 		this.dni = dni;
 		this.saldo = saldo;
 	}
@@ -40,6 +42,14 @@ public class Cuenta {
 
 	public void setNumCuenta(int numCuenta) {
 		this.numCuenta = numCuenta;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getDni() {
@@ -58,17 +68,18 @@ public class Cuenta {
 		this.saldo = saldo;
 	}
 
-	public void crearCuenta() {
+	public Cuenta crearCuenta() {
+		System.out.println("Ingrese su Nombre");
+		String nombre = leer.nextLine();
 		System.out.println("Ingrese su DNI");
 		String dni = leer.nextLine();
-		System.out.println("Ingrese el numero de cuenta");
-		int nc = leer.nextInt();
-		Cuenta cuenta = new Cuenta(nc, dni, 0);
-		// return cuenta;
+		Cuenta cuenta = new Cuenta(0,nombre, dni, 0);
+		return cuenta;
 	}
 
-	public void ingresar(int ingreso) {
-		this.saldo += ingreso;
+	public void ingresar(Cuenta cuenta,int ingreso) {
+		int dinero = cuenta.getSaldo();
+		cuenta.setSaldo(dinero+=ingreso);
 	}
 
 	public void retirar(int retiro) {
@@ -88,11 +99,11 @@ public class Cuenta {
 		}
 	}
 
-	public int consultarSaldo() {
-		return this.saldo;
+	public void consultarSaldo() {
+		System.out.println("Su saldo es:"+this.saldo);
 	}
 
-	public void consultarDatos() {
-		System.out.println(this.dni + ", " + this.numCuenta + ", " + this.saldo);
+	public void consultarDatos(Cuenta cuenta) {
+		System.out.println("Nombre: "+cuenta.getNombre()+"\nDNI:"+cuenta.getDni()+"\nSaldo: "+cuenta.getSaldo()+"\nNumero Cuenta: "+cuenta.getNumCuenta());
 	}
 }
