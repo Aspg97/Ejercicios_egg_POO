@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"Ej_09_operaciones","l":"main_matematica"},{"p":"Ej_09_operaciones","l":"Matematica"}];updateSearchResults();
